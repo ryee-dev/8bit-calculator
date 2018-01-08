@@ -1,8 +1,8 @@
-var add = function(number1, number2) {
-  return number1 + number2;
+var temperature = function(tempF) {
+  return (tempF - 32) * (5 / 9);
 };
 
-var number1 = parseInt(prompt("Enter a number:"));
-var number2 = parseInt(prompt("Enter another number:"));
+var tempF = parseInt(prompt("Please enter a temperature in Fahrenheit:"));
 
-alert(add(number1, number2));
+
+alert(temperature(tempF) + "degrees celsius");
