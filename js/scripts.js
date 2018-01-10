@@ -1,51 +1,51 @@
+// Backend logic
+var action = function(operation, number1, number2) {
+  var calcResult;
 
-/*var temperature = function(tempF) {
-  return (tempF - 32) * (5 / 9);
+  if (operation == 0) {
+    calcResult = add(number1, number2);
+  } else if (operation == 1) {
+    calcResult = subtract(number1, number2);
+  } else if (operation == 2) {
+    calcResult = multiply(number1, number2);
+  } else if (operation == 3) {
+    calcResult = divide(number1, number2);
+  };
+
+  return calcResult;
 };
 
-var tempF = parseInt(prompt("Please enter a temperature in Fahrenheit:"));
-
-
-alert(temperature(tempF) + "degrees celsius");
-
-*/
-
-/*
-var BMI = function(weight, height) {
-  return weight / (height * height);
+var add = function(number1, number2) {
+  return number1 + number2;
 };
 
-var weight = parseInt(prompt("Please enter your weight in lbs: "));
-var height = parseInt(prompt("Please enter your height in inches: "));
-
-alert(BMI(weight, height));
-*/
-
-/*
-1. Teaspoon -> cup
-2. cup -> gallons
-3. gallon -> keg
-*/
-
-var tspCup = function(cup) {
-  return (cup * 48);
+var subtract = function(number1, number2) {
+  return number1 - number2;
 };
 
-var cup = parseInt(prompt("How many cups would you like to convert into teaspoons?"));
-
-alert(tspCup(cup));
-
-var cupGal = function(gal) {
-return(gal * 16);
+var multiply = function(number1, number2) {
+  return number1 * number2;
 };
 
-var gal = parseInt(prompt("How many gallons would you like to convert into cups?"));
-
-alert(cupGal(gal));
-
-var galKeg = function(keg) {
-  return (keg * 15.5);
+var divide = function(number1, number2) {
+  return number1 / number2;
 };
-var keg = parseFloat(prompt("How many kegs would you like to convert into gallons?"));
 
-alert(galKeg(keg));
+// Frontend logic
+$(document).ready(function() {
+  var operation;
+  $('input:radio[name=operation]').click(function(){
+    operation = parseInt($('input:radio[name=operation]:checked').val());
+  });
+  $("#calcForm").submit(function(event){
+    event.preventDefault();
+    var number1 = parseFloat($("#firstNumber").val());
+    var number2 = parseFloat($("#secondNumber").val());
+
+    var result = action(operation, number1, number2).toFixed(2);
+
+    $("#output").text(result);
+
+    $("#result").show();
+  });
+});
